@@ -71,4 +71,32 @@ public class BasicActionsTest {
 		assertFalse(pierceSuccess);
 		assertFalse(isPierced);
 	}
+
+	@Test
+	void repairPump() {
+		var plumber = new Plumber(pump);
+
+		boolean breakSuccess = pump.Break();
+		boolean repairSuccess = plumber.repair(pump);
+		boolean isBroken = pump.isBroken();
+
+		assertTrue(breakSuccess);
+		assertTrue(repairSuccess);
+		assertFalse(isBroken);
+	}
+
+	@Test
+	void repairPump_InvalidPos() {
+		var plumber = new Plumber(pipe);
+
+		boolean breakSuccess = pump.Break();
+		boolean repairSuccess = plumber.repair(pump);
+		boolean isBroken = pump.isBroken();
+
+		assertTrue(breakSuccess);
+		assertFalse(repairSuccess);
+		assertTrue(isBroken);
+	}
+
+
 }
