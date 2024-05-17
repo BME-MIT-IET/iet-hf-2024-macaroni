@@ -125,9 +125,9 @@ public class BasicActionsTest {
 
 	@Test
 	void bananaPipe() {
-		var plumber = new Saboteur(pipe);
+		var actor = new Saboteur(pipe);
 
-		boolean applySuccess = plumber.dropBanana(pipe);
+		boolean applySuccess = actor.dropBanana(pipe);
 		var effect = pipe.getEffect();
 
 		assertTrue(applySuccess);
@@ -136,12 +136,30 @@ public class BasicActionsTest {
 
 	@Test
 	void bananaPipe_InvalidPos() {
-		var plumber = new Saboteur(pump);
+		var actor = new Saboteur(pump);
 
-		boolean applySuccess = plumber.dropBanana(pipe);
+		boolean applySuccess = actor.dropBanana(pipe);
 		var effect = pipe.getEffect();
 
 		assertFalse(applySuccess);
 		assertFalse(effect instanceof BananaEffect);
+	}
+
+	@Test
+	void setPumpInput() {
+		boolean addSuccess = pump.addPipe(pipe);
+		boolean setInputSuccess = pump.setInputPipe(pipe);
+
+		assertTrue(addSuccess);
+		assertTrue(setInputSuccess);
+	}
+
+	@Test
+	void setPumpOutput() {
+		boolean addSuccess = pump.addPipe(pipe);
+		boolean setInputSuccess = pump.setOutputPipe(pipe);
+
+		assertTrue(addSuccess);
+		assertTrue(setInputSuccess);
 	}
 }
