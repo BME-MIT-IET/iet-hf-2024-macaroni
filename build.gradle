@@ -8,12 +8,26 @@ archivesBaseName = project.archiveName
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
 sourceSets {
 	main {
 		java {
 			srcDir "src"
 		}
 		resources {
+		}
+	}
+	test {
+		java {
+			srcDir "test"
 		}
 	}
 }
@@ -30,5 +44,15 @@ jar {
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
             "Main-Class": "macaroni.Main"
         ])
+    }
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+
+    maxHeapSize = '1G'
+
+    testLogging {
+        events "passed"
     }
 }
