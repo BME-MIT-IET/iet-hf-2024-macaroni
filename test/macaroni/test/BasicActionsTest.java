@@ -1,6 +1,10 @@
 package macaroni.test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import macaroni.model.character.Plumber;
 import macaroni.model.character.Saboteur;
@@ -21,5 +25,15 @@ public class BasicActionsTest {
 		saboteur = new Saboteur(pipe);
 	}
 
+	@Test
+	void repairPipe() {
+		pipe.pierce();
+		boolean pierceSuccess = pipe.isPierced();
+		boolean repairSuccess = plumber.repair(pipe);
+		boolean isPierced = pipe.isPierced();
 
+		assertTrue(pierceSuccess);
+		assertTrue(repairSuccess);
+		assumeFalse(isPierced);
+	}
 }
