@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import macaroni.model.character.Plumber;
+import macaroni.model.character.Saboteur;
+import macaroni.model.effects.BananaEffect;
 import macaroni.model.effects.TechnokolEffect;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
@@ -119,5 +121,27 @@ public class BasicActionsTest {
 
 		assertFalse(applySuccess);
 		assertFalse(effect instanceof TechnokolEffect);
+	}
+
+	@Test
+	void bananaPipe() {
+		var plumber = new Saboteur(pipe);
+
+		boolean applySuccess = plumber.dropBanana(pipe);
+		var effect = pipe.getEffect();
+
+		assertTrue(applySuccess);
+		assertTrue(effect instanceof BananaEffect);
+	}
+
+	@Test
+	void bananaPipe_InvalidPos() {
+		var plumber = new Saboteur(pump);
+
+		boolean applySuccess = plumber.dropBanana(pipe);
+		var effect = pipe.getEffect();
+
+		assertFalse(applySuccess);
+		assertFalse(effect instanceof BananaEffect);
 	}
 }
