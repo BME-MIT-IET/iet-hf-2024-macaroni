@@ -9,9 +9,11 @@ import macaroni.model.character.Plumber;
 import macaroni.model.character.Saboteur;
 import macaroni.model.effects.BananaEffect;
 import macaroni.model.effects.TechnokolEffect;
+import macaroni.model.element.Cistern;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
+import macaroni.utils.ModelObjectFactory;
 
 public class BasicActionsTest {
 	private Pipe pipe;
@@ -232,4 +234,29 @@ public class BasicActionsTest {
 		assertTrue(setOutputSuccess1);
 		assertFalse(setOutputSuccess2);
 	}
+
+	@Test
+	void pickupPump() {
+		ModelObjectFactory.setCisternCreatePumpName("testPump");
+		var cistern = new Cistern(wc);
+		var plumber = new Plumber(cistern);
+
+		boolean pickupSuccess = plumber.pickUpPump(cistern);
+
+		assertTrue(pickupSuccess);
+		assertEquals(plumber.getHeldPumpCount(), 1);
+	}
+
+	@Test
+	void pickupPump_InvalidPos() {
+		ModelObjectFactory.setCisternCreatePumpName("testPump");
+		var cistern = new Cistern(wc);
+		var plumber = new Plumber(pipe);
+
+		boolean pickupSuccess = plumber.pickUpPump(cistern);
+
+		assertFalse(pickupSuccess);
+		assertEquals(plumber.getHeldPumpCount(), 0);
+	}
+
 }
