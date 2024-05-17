@@ -1,5 +1,6 @@
 plugins {
     id 'java-library' 
+    id 'jacoco'
 }
 
 version = project.version
@@ -54,5 +55,18 @@ tasks.named('test', Test) {
 
     testLogging {
         events "passed"
+    }
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: 'pasta/**')
+        }))
     }
 }
