@@ -157,9 +157,31 @@ public class BasicActionsTest {
 	@Test
 	void setPumpOutput() {
 		boolean addSuccess = pump.addPipe(pipe);
-		boolean setInputSuccess = pump.setOutputPipe(pipe);
+		boolean setOutputSuccess = pump.setOutputPipe(pipe);
+
+		assertTrue(addSuccess);
+		assertTrue(setOutputSuccess);
+	}
+
+	@Test
+	void setPumpInput_Fail() {
+		boolean addSuccess = pump.addPipe(pipe);
+		boolean setOutputSuccess = pump.setOutputPipe(pipe);
+		boolean setInputSuccess = pump.setInputPipe(pipe);
+
+		assertTrue(addSuccess);
+		assertTrue(setOutputSuccess);
+		assertFalse(setInputSuccess);
+	}
+
+	@Test
+	void setPumpOutput_Fail() {
+		boolean addSuccess = pump.addPipe(pipe);
+		boolean setInputSuccess = pump.setInputPipe(pipe);
+		boolean setOutputSuccess = pump.setOutputPipe(pipe);
 
 		assertTrue(addSuccess);
 		assertTrue(setInputSuccess);
+		assertFalse(setOutputSuccess);
 	}
 }
