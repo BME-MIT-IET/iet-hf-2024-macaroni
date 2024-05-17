@@ -186,7 +186,7 @@ public class BasicActionsTest {
 	}
 
 	@Test
-	void setPumpInput_Fail() {
+	void setPumpInput_AlreadyOutput() {
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setOutputSuccess = pump.setOutputPipe(pipe);
@@ -198,7 +198,7 @@ public class BasicActionsTest {
 	}
 
 	@Test
-	void setPumpOutput_Fail() {
+	void setPumpOutput_AlreadyInput() {
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setInputSuccess = pump.setInputPipe(pipe);
@@ -207,5 +207,29 @@ public class BasicActionsTest {
 		assertTrue(addSuccess);
 		assertTrue(setInputSuccess);
 		assertFalse(setOutputSuccess);
+	}
+
+	@Test
+	void setPumpInput_AlreadyInput() {
+		var plumber = new Plumber(pump);
+		boolean addSuccess = pump.addPipe(pipe);
+		boolean setInputSuccess1 = pump.setInputPipe(pipe);
+		boolean setInputSuccess2 = plumber.setInputPipe(pump, pipe);
+
+		assertTrue(addSuccess);
+		assertTrue(setInputSuccess1);
+		assertFalse(setInputSuccess2);
+	}
+
+	@Test
+	void setPumpOutput_AlreadyOutput() {
+		var plumber = new Plumber(pump);
+		boolean addSuccess = pump.addPipe(pipe);
+		boolean setOutputSuccess1 = pump.setOutputPipe(pipe);
+		boolean setOutputSuccess2 = plumber.setOutputPipe(pump, pipe);
+
+		assertTrue(addSuccess);
+		assertTrue(setOutputSuccess1);
+		assertFalse(setOutputSuccess2);
 	}
 }
