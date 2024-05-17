@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import macaroni.model.character.Plumber;
+import macaroni.model.effects.TechnokolEffect;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
@@ -98,5 +99,25 @@ public class BasicActionsTest {
 		assertTrue(isBroken);
 	}
 
+	@Test
+	void technokolPipe() {
+		var plumber = new Plumber(pipe);
 
+		boolean applySuccess = plumber.applyTechnokol(pipe);
+		var effect = pipe.getEffect();
+
+		assertTrue(applySuccess);
+		assertTrue(effect instanceof TechnokolEffect);
+	}
+
+	@Test
+	void technokolPipe_InvalidPos() {
+		var plumber = new Plumber(pump);
+
+		boolean applySuccess = plumber.applyTechnokol(pipe);
+		var effect = pipe.getEffect();
+
+		assertFalse(applySuccess);
+		assertFalse(effect instanceof TechnokolEffect);
+	}
 }
