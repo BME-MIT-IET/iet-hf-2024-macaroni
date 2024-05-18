@@ -1,0 +1,4 @@
+A Unit tesztek hasznosak a projekt osztályainak működésének ellenőrzésében. Az egyes osztályokat elkülönítve, önmagukban teszteltük.
+A még jobb elkülünölés érdekében a Mockito-t hívtuk segítségül, ami úgynevezett mock-okkal pótolja az esetleges függőségeket, így a vizsgált osztály semmilyen szinten nem függ más osztályok megvalósításától.
+A tesztek elvégzésénél magas kódfedettségre törekedtünk, hoszen minél magasabb a kódlefedettség, annál biztosabbak lehetünk abban, hogy később az éles környezetben a tesztelt metódusok a megfelelő működést biztosítják majd.
+Mivel, a Unit tesztek elvégzéséhez alapvetően egymással lazán csatolt osztályokra van szükségünk, a tesztek megtervezése és elvégzése segítséget nyújt a függőségek fellazításában is.
