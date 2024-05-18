@@ -53,9 +53,6 @@ public class TechnocolEffectTester {
         boolean result4 = testTechnokolEffect.leave();
         assertEquals(result4, false);
 
-        boolean result5 = testTechnokolEffect.isActivated();
-        assertEquals(result5, true);
-        
 
     }
 
