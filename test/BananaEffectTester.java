@@ -3,7 +3,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import macaroni.utils.Random;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.character.Plumber;
@@ -15,7 +14,6 @@ public class BananaEffectTester {
     
     private Pump mockPump;
     private Pipe mockPipe;
-    private Random mockRandom;
     private Plumber mockPlumber;
     private BananaEffect testBananaEffect;
    
