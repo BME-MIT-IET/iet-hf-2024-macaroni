@@ -2,6 +2,9 @@ package macaroni.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,10 +12,13 @@ import macaroni.model.character.Plumber;
 import macaroni.model.character.Saboteur;
 import macaroni.model.effects.BananaEffect;
 import macaroni.model.effects.TechnokolEffect;
+import macaroni.model.element.ActiveElement;
 import macaroni.model.element.Cistern;
+import macaroni.model.element.Element;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
+import macaroni.test.util.ReflectionUtil;
 import macaroni.utils.ModelObjectFactory;
 
 public class BasicActionsTest {
@@ -22,6 +28,7 @@ public class BasicActionsTest {
 
 	@BeforeEach
 	void setup() {
+		ModelObjectFactory.reset();
 		wc = new WaterCollector();
 		pipe = new Pipe(wc);
 		pump = new Pump();
@@ -259,4 +266,69 @@ public class BasicActionsTest {
 		assertEquals(plumber.getHeldPumpCount(), 0);
 	}
 
+	@Test
+	void placePump() {
+		var pump1 = new Pump();
+		var pump2 = new Pump();
+		var pump3 = new Pump();
+		var pipe = new Pipe(null);
+		var collector = new WaterCollector();
+		var plumber = new Plumber(null);
+		ReflectionUtil.setPrivateField(ActiveElement.class, pump1, "connectedPipes", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(Element.class, pump1, "neighbours", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(ActiveElement.class, pump2, "connectedPipes", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(Element.class, pump2, "neighbours", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "endpoints", ReflectionUtil.asList(pump1, pump2));
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "occupied", true);
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "pierced", true);
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "ground", collector);
+		ReflectionUtil.setPrivateField(Element.class, pipe, "neighbours", ReflectionUtil.asList(pump1, pump2));
+		ReflectionUtil.setPrivateField(Plumber.class, plumber, "heldPumps", ReflectionUtil.asList(pump3));
+		ReflectionUtil.setPrivateField(macaroni.model.character.Character.class, plumber, "location", pipe);
+
+		ModelObjectFactory.setPipeCreatePipeName("newPipe");
+		boolean success = plumber.placePump(pipe);
+
+		Pipe newPipe = (Pipe) ModelObjectFactory.getObject("newPipe");
+		assertTrue(success);
+		assertEquals(plumber.getLocation(), pump3);
+		assertEquals(pipe.getEndpoint(0), pump2);
+		assertEquals(pipe.getEndpoint(1), pump3);
+		assertEquals(ReflectionUtil.getPrivateField(Element.class, pipe, "neighbours"), Arrays.asList(pump2, pump3));
+		assertEquals(ReflectionUtil.getPrivateField(ActiveElement.class, pump3, "connectedPipes"), Arrays.asList(pipe, newPipe));
+		assertEquals(ReflectionUtil.getPrivateField(Element.class, pump3, "neighbours"), Arrays.asList(pipe, newPipe));
+		assertEquals(newPipe.getEndpoint(0), pump1);
+		assertEquals(newPipe.getEndpoint(1), pump3);
+		assertEquals(ReflectionUtil.getPrivateField(Element.class, newPipe, "neighbours"), Arrays.asList(pump1, pump3));
+	}
+
+	@Test
+	void placePumpFailed() {
+		var pump1 = new Pump();
+		var pump2 = new Pump();
+		var pipe = new Pipe(null);
+		var collector = new WaterCollector();
+		var plumber = new Plumber(null);
+		ReflectionUtil.setPrivateField(ActiveElement.class, pump1, "connectedPipes", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(Element.class, pump1, "neighbours", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(ActiveElement.class, pump2, "connectedPipes", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(Element.class, pump2, "neighbours", ReflectionUtil.asList(pipe));
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "endpoints", ReflectionUtil.asList(pump1, pump2));
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "occupied", true);
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "pierced", true);
+		ReflectionUtil.setPrivateField(Pipe.class, pipe, "ground", collector);
+		ReflectionUtil.setPrivateField(Element.class, pipe, "neighbours", ReflectionUtil.asList(pump1, pump2));
+		ReflectionUtil.setPrivateField(Plumber.class, plumber, "heldPumps", new ArrayList<>());
+		ReflectionUtil.setPrivateField(macaroni.model.character.Character.class, plumber, "location", pipe);
+
+		ModelObjectFactory.setPipeCreatePipeName("newPipe");
+		boolean success = plumber.placePump(pipe);
+
+		assertFalse(success);
+
+		assertEquals(pipe.getEndpoint(0), pump1);
+		assertEquals(pipe.getEndpoint(1), pump2);
+		assertEquals(ReflectionUtil.getPrivateField(Element.class, pipe, "neighbours"), Arrays.asList(pump1, pump2));
+		assertNull(ModelObjectFactory.getObject("newPipe"));
+	}
 }
