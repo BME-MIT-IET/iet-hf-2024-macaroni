@@ -31,6 +31,20 @@ public class Plumber extends Character {
     }
 
     /**
+     * Creates a new Plumber.
+     * Use for testing.
+     * 
+     * @param location the initial location of the plumber
+     * @param pump held pump
+     * @param pipe held pipe
+     */
+    public Plumber(Element location, Pump pump, Pipe pipe){
+        super(location);
+        heldPipe = pipe;
+        heldPumps.add(pump);
+    }
+
+    /**
      * Repairs a chosen pipe.
      * <p></p>
      * This action will only be successful if the plumber is standing on the given pipe.
