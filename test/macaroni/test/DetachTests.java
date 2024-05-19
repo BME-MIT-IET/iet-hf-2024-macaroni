@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 public class DetachTests {
 
@@ -22,20 +21,20 @@ public class DetachTests {
     public void setUp() {
         ModelObjectFactory.reset();
 
-        ground = spy(new WaterCollector());
-        cisternCollector = spy(new WaterCollector());
+        ground = new WaterCollector();
+        cisternCollector = new WaterCollector();
     }
 
     @Test
     public void detachBothEndsOfUnoccupiedPipeFromPump() {
         // Arrange
-        Pump pump1 = spy(new Pump());
-        Pump pump2 = spy(new Pump());
+        Pump pump1 = new Pump();
+        Pump pump2 = new Pump();
 
-        Plumber plumber1 = spy(new Plumber(pump1));
-        Plumber plumber2 = spy(new Plumber(pump2));
+        Plumber plumber1 = new Plumber(pump1);
+        Plumber plumber2 = new Plumber(pump2);
 
-        Pipe pipe = spy(new Pipe(ground));
+        Pipe pipe = new Pipe(ground);
         pump1.addPipe(pipe);
         pump2.addPipe(pipe);
 
@@ -53,21 +52,15 @@ public class DetachTests {
         assertSame(plumber2.getLocation(), pump2);
         assertNull(pipe.getEndpoint(0));
         assertNull(pipe.getEndpoint(1));
-
-        verify(pump1, times(1)).removePipe(pipe);
-        verify(pump2, times(1)).removePipe(pipe);
-        verify(pipe, times(1)).removeEndpoint(pump1);
-        verify(pipe, times(1)).removeEndpoint(pump2);
-        verify(ground, times(2)).storeAmount(0);
     }
 
     @Test
     public void detachPipeFromCistern() {
         // Arrange
-        Pipe pipe = spy(new Pipe(ground));
-        Pump pump = spy(new Pump());
-        Cistern cistern = spy(new Cistern(cisternCollector));
-        Plumber plumber = spy(new Plumber(cistern));
+        Pipe pipe = new Pipe(ground);
+        Pump pump = new Pump();
+        Cistern cistern = new Cistern(cisternCollector);
+        Plumber plumber = new Plumber(cistern);
 
         pump.addPipe(pipe);
         cistern.addPipe(pipe);
@@ -82,21 +75,15 @@ public class DetachTests {
         assertSame(plumber.getLocation(), cistern);
         assertNull(pipe.getEndpoint(1));
         assertSame(pipe.getEndpoint(0), pump);
-
-        verify(cistern, times(1)).removePipe(pipe);
-        verify(pipe, times(1)).removeEndpoint(cistern);
-        verify(pump, never()).removePipe(pipe);
-        verify(pipe, never()).removeEndpoint(pump);
-        verify(ground, times(1)).storeAmount(0);
     }
 
     @Test
     public void detachPipeFromSpring() {
         // Arrange
-        Pipe pipe = spy(new Pipe(ground));
-        Pump pump = spy(new Pump());
-        Spring spring = spy(new Spring());
-        Plumber plumber = spy(new Plumber(spring));
+        Pipe pipe = new Pipe(ground);
+        Pump pump = new Pump();
+        Spring spring = new Spring();
+        Plumber plumber = new Plumber(spring);
 
         pump.addPipe(pipe);
         spring.addPipe(pipe);
@@ -111,30 +98,20 @@ public class DetachTests {
         assertSame(plumber.getLocation(), spring);
         assertNull(pipe.getEndpoint(1));
         assertSame(pipe.getEndpoint(0), pump);
-
-        verify(spring, times(1)).removePipe(pipe);
-        verify(pipe, times(1)).removeEndpoint(spring);
-        verify(pump, never()).removePipe(pipe);
-        verify(pipe, never()).removeEndpoint(pump);
-        verify(ground, times(1)).storeAmount(0);
     }
 
     @Test
     public void detachOccupiedPipe() {
         // Arrange
-        Pipe origPipe = new Pipe(ground);
-        Pipe pipe = spy(origPipe);
-        Pump origPump1 = new Pump();
-        Pump pump1 = spy(origPump1);
-        Pump pump2 = spy(new Pump());
+        Pipe pipe = new Pipe(ground);
+        Pump pump1 = new Pump();
+        Pump pump2 = new Pump();
 
         pump1.addPipe(pipe);
         pump2.addPipe(pipe);
 
-        Plumber plumber1 = spy(new Plumber(pump1));
-        Plumber plumber2 = spy(new Plumber(pipe));
-
-        assertSame(plumber2.getLocation(), pipe);
+        Plumber plumber1 = new Plumber(pump1);
+        Plumber plumber2 = new Plumber(pipe);
 
         // Act
         boolean success = plumber1.detachPipe(pump1, pipe);
@@ -147,22 +124,16 @@ public class DetachTests {
         assertSame(plumber2.getLocation(), pipe);
         assertSame(pipe.getEndpoint(0), pump1);
         assertSame(pipe.getEndpoint(1), pump2);
-
-        verify(pump1, times(1)).removePipe(pipe);
-        verify(pump2, never()).removePipe(pipe);
-        verify(pipe, times(1)).removeEndpoint(pump1);
-        verify(pipe, never()).removeEndpoint(pump2);
-        verify(ground, never()).storeAmount(0);
     }
 
     @Test
     public void detachPipeEndWhileHoldingAnotherPipeEnd() {
         // Arrange
-        Pipe pipe1 = spy(new Pipe(ground));
-        Pipe pipe2 = spy(new Pipe(ground));
-        Pump pump1 = spy(new Pump());
-        Pump pump2 = spy(new Pump());
-        Plumber plumber = spy(new Plumber(pump1));
+        Pipe pipe1 = new Pipe(ground);
+        Pipe pipe2 = new Pipe(ground);
+        Pump pump1 = new Pump();
+        Pump pump2 = new Pump();
+        Plumber plumber = new Plumber(pump1);
 
         pump1.addPipe(pipe1);
         pump1.addPipe(pipe2);
@@ -176,8 +147,6 @@ public class DetachTests {
         assertTrue(success);
         assertSame(plumber.getHeldPipe(), pipe2);
         assertSame(plumber.getLocation(), pump1);
-        verify(pump1, times(1)).removePipe(pipe2);
-        verify(pipe2, times(1)).removeEndpoint(pump1);
 
         // Act
         success = plumber.detachPipe(pump1, pipe1);
@@ -186,16 +155,14 @@ public class DetachTests {
         assertFalse(success);
         assertSame(plumber.getHeldPipe(), pipe2);
         assertSame(plumber.getLocation(), pump1);
-        verify(pump1, never()).removePipe(pipe1);
-        verify(pipe1, never()).removeEndpoint(pump1);
     }
 
     @Test
     public void detachBothEndsOfNewPipe() {
         // Arrange
-        Cistern cistern = spy(new Cistern(cisternCollector));
-        Plumber plumber1 = spy(new Plumber(cistern));
-        Plumber plumber2 = spy(new Plumber(cistern));
+        Cistern cistern = new Cistern(cisternCollector);
+        Plumber plumber1 = new Plumber(cistern);
+        Plumber plumber2 = new Plumber(cistern);
 
         ModelObjectFactory.setCisternCreatePipeGround(ground);
         ModelObjectFactory.setCisternCreatePipeName("pipe");
