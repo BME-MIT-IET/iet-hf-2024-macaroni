@@ -28,10 +28,10 @@ public class ControllerActionsTest {
 
         Pipe createdPipe = new Pipe(collector2);
 
-        MockedStatic<ModelObjectFactory> mock = mockStatic(ModelObjectFactory.class);
-        mock.when(ModelObjectFactory::cisternCreatePipe).thenReturn(createdPipe);
-
-        cistern.spawnPipe();
+        try (MockedStatic<ModelObjectFactory> mock = mockStatic(ModelObjectFactory.class)) {
+            mock.when(ModelObjectFactory::cisternCreatePipe).thenReturn(createdPipe);
+            cistern.spawnPipe();
+        }
 
         assertEquals(createdPipe.getEndpoint(0), cistern);
         assertTrue(cistern.removePipe(createdPipe));
