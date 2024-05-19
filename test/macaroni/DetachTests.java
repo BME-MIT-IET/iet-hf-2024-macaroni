@@ -1,4 +1,4 @@
-package macaroni.test;
+package macaroni;
 
 import macaroni.model.character.Plumber;
 import macaroni.model.element.Cistern;
