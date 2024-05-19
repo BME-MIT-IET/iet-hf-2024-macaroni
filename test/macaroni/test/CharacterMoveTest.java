@@ -1,12 +1,14 @@
 package macaroni.test;
 
 import macaroni.model.character.Plumber;
+import macaroni.model.character.Saboteur;
 import macaroni.model.element.Cistern;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.element.Spring;
 import macaroni.model.misc.WaterCollector;
 import macaroni.utils.ModelObjectFactory;
+import macaroni.utils.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -103,5 +105,23 @@ public class CharacterMoveTest {
 
         assertTrue(success);
         assertEquals(spring, plumber.getLocation());
+    }
+
+    @Test
+    void moveToBananaPipe() {
+        assertTrue(pump1.addPipe(pipe));
+        assertTrue(pump2.addPipe(pipe));
+        var saboteur = new Saboteur(pipe);
+
+        Random.setDeterministicValue(1);
+        assertTrue(saboteur.dropBanana(pipe));
+        assertTrue(saboteur.moveTo(pump1));
+        Random.setDeterministicSlideBack(pipe, false);
+        assertFalse(saboteur.moveTo(pipe));
+        assertEquals(pump2, saboteur.getLocation());
+
+        Random.setDeterministicSlideBack(pipe, true);
+        assertFalse(saboteur.moveTo(pipe));
+        assertEquals(pump2, saboteur.getLocation());
     }
 }
