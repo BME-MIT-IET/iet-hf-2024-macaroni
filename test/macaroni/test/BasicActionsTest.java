@@ -29,6 +29,8 @@ public class BasicActionsTest {
 		wc = new WaterCollector();
 		pipe = new Pipe(wc);
 		pump = new Pump();
+		pipe.addEndpoint(new Pump());
+		pipe.addEndpoint(new Pump());
 	}
 
 	@Test
@@ -153,6 +155,7 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpInput() {
+		var pipe = new Pipe(wc);
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setInputSuccess = plumber.setInputPipe(pump, pipe);
@@ -163,6 +166,7 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpOutput() {
+		var pipe = new Pipe(wc);
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setOutputSuccess = plumber.setOutputPipe(pump, pipe);
@@ -173,7 +177,8 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpInput_InvalidPos() {
-		var plumber = new Plumber(pipe);
+		var pipe = new Pipe(wc);
+		var plumber = new Plumber(this.pipe);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setInputSuccess = plumber.setInputPipe(pump, pipe);
 
@@ -183,7 +188,8 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpOutput_InvalidPos() {
-		var plumber = new Plumber(pipe);
+		var pipe = new Pipe(wc);
+		var plumber = new Plumber(this.pipe);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setOutputSuccess = plumber.setOutputPipe(pump, pipe);
 
@@ -193,6 +199,7 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpInput_AlreadyOutput() {
+		var pipe = new Pipe(wc);
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setOutputSuccess = pump.setOutputPipe(pipe);
@@ -205,6 +212,7 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpOutput_AlreadyInput() {
+		var pipe = new Pipe(wc);
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setInputSuccess = pump.setInputPipe(pipe);
@@ -217,6 +225,7 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpInput_AlreadyInput() {
+		var pipe = new Pipe(wc);
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setInputSuccess1 = pump.setInputPipe(pipe);
@@ -229,6 +238,7 @@ public class BasicActionsTest {
 
 	@Test
 	void setPumpOutput_AlreadyOutput() {
+		var pipe = new Pipe(wc);
 		var plumber = new Plumber(pump);
 		boolean addSuccess = pump.addPipe(pipe);
 		boolean setOutputSuccess1 = pump.setOutputPipe(pipe);
@@ -265,14 +275,15 @@ public class BasicActionsTest {
 
 	@Test
 	void placePump() {
+		var pipe = new Pipe(wc);
 		var pump1 = new Pump();
 		var pump2 = new Pump();
 		var pump3 = new Pump();
-		var plumber = new Plumber(pipe, new ArrayList<>(Arrays.asList(pump3)));
 		pump1.addPipe(pipe);
 		pump2.addPipe(pipe);
 		pipe.addEndpoint(pump1);
 		pipe.addEndpoint(pump2);
+		var plumber = new Plumber(pipe, new ArrayList<>(Arrays.asList(pump3)));
 
 		ModelObjectFactory.setPipeCreatePipeName("newPipe");
 		boolean success = plumber.placePump(pipe);
@@ -288,13 +299,14 @@ public class BasicActionsTest {
 
 	@Test
 	void placePumpFailed() {
+		var pipe = new Pipe(wc);
 		var pump1 = new Pump();
 		var pump2 = new Pump();
-		var plumber = new Plumber(pipe);
 		pump1.addPipe(pipe);
 		pump2.addPipe(pipe);
 		pipe.addEndpoint(pump1);
 		pipe.addEndpoint(pump2);
+		var plumber = new Plumber(pipe);
 
 		ModelObjectFactory.setPipeCreatePipeName("newPipe");
 		boolean success = plumber.placePump(pipe);
