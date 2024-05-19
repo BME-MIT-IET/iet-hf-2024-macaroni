@@ -139,6 +139,9 @@ public class ElementTickTest {
 
     @Test
     void tickBananaPipe() {
+        pump1.addPipe(pipe1);
+        pump2.addPipe(pipe1);
+
         Saboteur saboteur = new Saboteur(pipe1);
         Random.setDeterministicValue(1);
         saboteur.dropBanana(pipe1);
@@ -156,6 +159,9 @@ public class ElementTickTest {
 
     @Test
     void tickTechnokoledPipe() {
+        pump1.addPipe(pipe1);
+        pump2.addPipe(pipe1);
+
         Saboteur saboteur = new Saboteur(pipe1);
         Random.setDeterministicValue(2);
         saboteur.applyTechnokol(pipe1);
