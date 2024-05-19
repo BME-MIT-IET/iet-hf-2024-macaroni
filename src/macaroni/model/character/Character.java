@@ -24,10 +24,12 @@ public abstract class Character {
     public Character(Element location) {
         boolean success = moveTo(location);
         if (!success) {
-            throw new IllegalArgumentException(
-                    "Character can't be constructed at location " + location +
-                    " because the element refused the entry request."
-            );
+            String message = "Character can't be constructed at location " +
+                    location +
+                    " because the element refused the entry request.\n" +
+                    "Ensure the element is in a valid state and can be moved to " +
+                    "(for example a pipe is not occupied and both its ends are connected).";
+            throw new IllegalArgumentException(message);
         }
     }
 
