@@ -46,6 +46,7 @@ public class CharacterMoveTest {
         assertEquals(pipe, plumber.getLocation());
     }
 
+    // TODO place plumber2 on pipe when constructed
     @Test
     void moveToOccupiedPipe() {
         assertTrue(pump1.addPipe(pipe));
@@ -123,5 +124,26 @@ public class CharacterMoveTest {
         Random.setDeterministicSlideBack(pipe, true);
         assertFalse(saboteur.moveTo(pipe));
         assertEquals(pump2, saboteur.getLocation());
+    }
+
+    // TODO place plumber on pipe when constructed
+    @Test
+    void moveThroughTechnokoledPipe() {
+        assertTrue(pump1.addPipe(pipe));
+        assertTrue(pump2.addPipe(pipe));
+        var plumber = new Plumber(pump1);
+        assertTrue(plumber.moveTo(pipe));
+
+        Random.setDeterministicValue(1);
+        assertTrue(plumber.applyTechnokol(pipe));
+        assertTrue(plumber.moveTo(pump1));
+        assertTrue(plumber.moveTo(pipe));
+
+        plumber.moveTo(pump2);
+        assertEquals(pipe, plumber.getLocation());
+
+        pipe.tick();
+        assertTrue(plumber.moveTo(pump2));
+        assertEquals(pump2, plumber.getLocation());
     }
 }
