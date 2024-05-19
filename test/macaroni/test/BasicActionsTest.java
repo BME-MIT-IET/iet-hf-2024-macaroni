@@ -2,6 +2,9 @@ package macaroni.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +16,6 @@ import macaroni.model.element.Cistern;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
-import macaroni.test.util.ReflectionUtil;
 import macaroni.utils.ModelObjectFactory;
 
 public class BasicActionsTest {
@@ -266,12 +268,11 @@ public class BasicActionsTest {
 		var pump1 = new Pump();
 		var pump2 = new Pump();
 		var pump3 = new Pump();
-		var plumber = new Plumber(pipe);
+		var plumber = new Plumber(pipe, new ArrayList<>(Arrays.asList(pump3)));
 		pump1.addPipe(pipe);
 		pump2.addPipe(pipe);
 		pipe.addEndpoint(pump1);
 		pipe.addEndpoint(pump2);
-		ReflectionUtil.setPrivateField(Plumber.class, plumber, "heldPumps", ReflectionUtil.asList(pump3));
 
 		ModelObjectFactory.setPipeCreatePipeName("newPipe");
 		boolean success = plumber.placePump(pipe);
