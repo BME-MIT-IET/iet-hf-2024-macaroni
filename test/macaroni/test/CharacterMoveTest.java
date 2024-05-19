@@ -4,6 +4,7 @@ import macaroni.model.character.Plumber;
 import macaroni.model.element.Cistern;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
+import macaroni.model.element.Spring;
 import macaroni.model.misc.WaterCollector;
 import macaroni.utils.ModelObjectFactory;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +18,7 @@ public class CharacterMoveTest {
     private Pipe pipe;
     private Pump pump1;
     private Pump pump2;
+    private Spring spring;
 
     @BeforeEach
     void setup() {
@@ -27,6 +29,7 @@ public class CharacterMoveTest {
         pipe = new Pipe(ground);
         pump1 = new Pump();
         pump2 = new Pump();
+        spring = new Spring();
     }
 
     @Test
@@ -88,5 +91,17 @@ public class CharacterMoveTest {
 
         assertTrue(success);
         assertEquals(cistern, plumber.getLocation());
+    }
+
+    @Test
+    void moveToSpring() {
+        assertTrue(pump1.addPipe(pipe));
+        assertTrue(spring.addPipe(pipe));
+        var plumber = new Plumber(pipe);
+
+        boolean success = plumber.moveTo(spring);
+
+        assertTrue(success);
+        assertEquals(spring, plumber.getLocation());
     }
 }
