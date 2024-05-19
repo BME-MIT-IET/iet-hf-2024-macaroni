@@ -157,13 +157,17 @@ public class ElementTickTest {
     @Test
     void tickTechnokoledPipe() {
         Saboteur saboteur = new Saboteur(pipe1);
-        Random.setDeterministicValue(1);
+        Random.setDeterministicValue(2);
         saboteur.applyTechnokol(pipe1);
 
         Effect effect = pipe1.getEffect();
         assertEquals(effect.getClass(), TechnokolEffect.class);
         TechnokolEffect tEffect = (TechnokolEffect) effect;
+        assertEquals(tEffect.getCountdown(), 2);
+
+        pipe1.tick();
         assertEquals(tEffect.getCountdown(), 1);
+        assertEquals(pipe1.getEffect(), tEffect);
 
         pipe1.tick();
 
