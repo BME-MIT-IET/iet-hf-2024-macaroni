@@ -22,7 +22,13 @@ public abstract class Character {
      * @param location the initial location of the character
      */
     public Character(Element location) {
-        this.location = location;
+        boolean success = moveTo(location);
+        if (!success) {
+            throw new IllegalArgumentException(
+                    "Character can't be constructed at location " + location +
+                    " because the element refused the entry request."
+            );
+        }
     }
 
     /**
@@ -42,7 +48,7 @@ public abstract class Character {
      * @return true if the character left to {@code to}
      */
     public boolean leave(Element to) {
-        if (location.leave()) {
+        if (location == null || location.leave()) {
             location = to;
             return true;
         } else {

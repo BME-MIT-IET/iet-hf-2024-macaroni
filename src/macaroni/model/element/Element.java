@@ -22,7 +22,7 @@ public abstract class Element {
      * @param from      the location where the character is coming from
      */
     public boolean enter(Character character, Element from) {
-        if (neighbours.contains(from)) {
+        if (from == null || neighbours.contains(from)) {
             return character.leave(this);
         }
         return false;

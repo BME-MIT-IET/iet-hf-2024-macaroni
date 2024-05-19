@@ -64,12 +64,10 @@ public class CharacterMoveTest {
         assertEquals(mainPipe, plumber.getLocation());
     }
 
-    // TODO place plumber2 on pipe when constructed
     @Test
     void moveToOccupiedPipe() {
         var plumber1 = new Plumber(pump1);
-        var plumber2 = new Plumber(pump1);
-        assertTrue(plumber2.moveTo(mainPipe));
+        new Plumber(mainPipe);
 
         boolean success = plumber1.moveTo(mainPipe);
 
@@ -133,11 +131,9 @@ public class CharacterMoveTest {
         assertEquals(pump2, saboteur.getLocation());
     }
 
-    // TODO place plumber on pipe when constructed
     @Test
     void moveThroughTechnokoledPipe() {
-        var plumber = new Plumber(pump1);
-        assertTrue(plumber.moveTo(mainPipe));
+        var plumber = new Plumber(mainPipe);
 
         Random.setDeterministicValue(1);
         assertTrue(plumber.applyTechnokol(mainPipe));

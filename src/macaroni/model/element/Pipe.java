@@ -108,8 +108,15 @@ public class Pipe extends Element {
      */
     @Override
     public boolean enter(Character character, Element from) {
-        Random.setCharacterLocationBeforeEnteringPipe(this, from);
-        if (neighbours.contains(from) && !occupied && endpoints.size() == 2) {
+        if (!occupied && endpoints.size() == 2) {
+            if (from == null) {
+                Random.setCharacterLocationBeforeEnteringPipe(this, endpoints.get(0));
+            } else if (neighbours.contains(from)) {
+                Random.setCharacterLocationBeforeEnteringPipe(this, from);
+            } else {
+                return false;
+            }
+
             if (effect.enter(character)) {
                 occupied = true;
                 return true;
