@@ -15,47 +15,62 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CharacterMoveTest {
-
     private Cistern cistern;
-    private Pipe pipe;
+
+    private Pipe cisternPipe;
+    private Pipe detachedPipe;
+    private Pipe mainPipe;
+    private Pipe springPipe;
+
     private Pump pump1;
     private Pump pump2;
+
     private Spring spring;
 
     @BeforeEach
-    void setup() {
+    void setupMap() {
         ModelObjectFactory.reset();
-        WaterCollector ground = new WaterCollector();
-        WaterCollector cisternCollector = new WaterCollector();
+
+        var ground = new WaterCollector();
+        var cisternCollector = new WaterCollector();
+
         cistern = new Cistern(cisternCollector);
-        pipe = new Pipe(ground);
+        cisternPipe = new Pipe(ground);
+        detachedPipe = new Pipe(ground);
+        mainPipe = new Pipe(ground);
+        springPipe = new Pipe(ground);
+
         pump1 = new Pump();
         pump2 = new Pump();
+
         spring = new Spring();
+
+        assertTrue(spring.addPipe(springPipe));
+        assertTrue(pump1.addPipe(springPipe));
+        assertTrue(pump1.addPipe(mainPipe));
+        assertTrue(pump1.addPipe(detachedPipe));
+        assertTrue(pump2.addPipe(mainPipe));
+        assertTrue(pump2.addPipe(cisternPipe));
+        assertTrue(cistern.addPipe(cisternPipe));
     }
 
     @Test
     void moveToUnoccupiedPipe() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(pump2.addPipe(pipe));
         var plumber = new Plumber(pump1);
 
-        boolean success = plumber.moveTo(pipe);
+        boolean success = plumber.moveTo(mainPipe);
 
         assertTrue(success);
-        assertEquals(pipe, plumber.getLocation());
+        assertEquals(mainPipe, plumber.getLocation());
     }
 
-    // TODO place plumber2 on pipe when constructed
     @Test
     void moveToOccupiedPipe() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(pump2.addPipe(pipe));
         var plumber1 = new Plumber(pump1);
         var plumber2 = new Plumber(pump1);
-        assertTrue(plumber2.moveTo(pipe));
+        assertTrue(plumber2.moveTo(mainPipe));
 
-        boolean success = plumber1.moveTo(pipe);
+        boolean success = plumber1.moveTo(mainPipe);
 
         assertFalse(success);
         assertEquals(pump1, plumber1.getLocation());
@@ -63,10 +78,9 @@ public class CharacterMoveTest {
 
     @Test
     void moveToDetachedPipe() {
-        assertTrue(pump1.addPipe(pipe));
         var plumber1 = new Plumber(pump1);
 
-        boolean success = plumber1.moveTo(pipe);
+        boolean success = plumber1.moveTo(detachedPipe);
 
         assertFalse(success);
         assertEquals(pump1, plumber1.getLocation());
@@ -74,9 +88,7 @@ public class CharacterMoveTest {
 
     @Test
     void moveToPump() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(pump2.addPipe(pipe));
-        var plumber = new Plumber(pipe);
+        var plumber = new Plumber(mainPipe);
 
         boolean success = plumber.moveTo(pump2);
 
@@ -86,9 +98,7 @@ public class CharacterMoveTest {
 
     @Test
     void moveToCistern() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(cistern.addPipe(pipe));
-        var plumber = new Plumber(pipe);
+        var plumber = new Plumber(cisternPipe);
 
         boolean success = plumber.moveTo(cistern);
 
@@ -98,9 +108,7 @@ public class CharacterMoveTest {
 
     @Test
     void moveToSpring() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(spring.addPipe(pipe));
-        var plumber = new Plumber(pipe);
+        var plumber = new Plumber(springPipe);
 
         boolean success = plumber.moveTo(spring);
 
@@ -110,39 +118,34 @@ public class CharacterMoveTest {
 
     @Test
     void moveToBananaPipe() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(pump2.addPipe(pipe));
-        var saboteur = new Saboteur(pipe);
+        var saboteur = new Saboteur(mainPipe);
 
         Random.setDeterministicValue(1);
-        assertTrue(saboteur.dropBanana(pipe));
+        assertTrue(saboteur.dropBanana(mainPipe));
         assertTrue(saboteur.moveTo(pump1));
-        Random.setDeterministicSlideBack(pipe, false);
-        assertFalse(saboteur.moveTo(pipe));
+        Random.setDeterministicSlideBack(mainPipe, false);
+        assertFalse(saboteur.moveTo(mainPipe));
         assertEquals(pump2, saboteur.getLocation());
 
-        Random.setDeterministicSlideBack(pipe, true);
-        assertFalse(saboteur.moveTo(pipe));
+        Random.setDeterministicSlideBack(mainPipe, true);
+        assertFalse(saboteur.moveTo(mainPipe));
         assertEquals(pump2, saboteur.getLocation());
     }
 
-    // TODO place plumber on pipe when constructed
     @Test
     void moveThroughTechnokoledPipe() {
-        assertTrue(pump1.addPipe(pipe));
-        assertTrue(pump2.addPipe(pipe));
         var plumber = new Plumber(pump1);
-        assertTrue(plumber.moveTo(pipe));
+        assertTrue(plumber.moveTo(mainPipe));
 
         Random.setDeterministicValue(1);
-        assertTrue(plumber.applyTechnokol(pipe));
+        assertTrue(plumber.applyTechnokol(mainPipe));
         assertTrue(plumber.moveTo(pump1));
-        assertTrue(plumber.moveTo(pipe));
+        assertTrue(plumber.moveTo(mainPipe));
 
         plumber.moveTo(pump2);
-        assertEquals(pipe, plumber.getLocation());
+        assertEquals(mainPipe, plumber.getLocation());
 
-        pipe.tick();
+        mainPipe.tick();
         assertTrue(plumber.moveTo(pump2));
         assertEquals(pump2, plumber.getLocation());
     }
