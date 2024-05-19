@@ -61,4 +61,16 @@ public class CharacterMoveTest {
         assertFalse(success);
         assertEquals(pump1, plumber1.getLocation());
     }
+
+    @Test
+    void moveToPump() {
+        assertTrue(pump1.addPipe(pipe));
+        assertTrue(pump2.addPipe(pipe));
+        var plumber = new Plumber(pipe);
+
+        boolean success = plumber.moveTo(pump2);
+
+        assertTrue(success);
+        assertEquals(pump2, plumber.getLocation());
+    }
 }
