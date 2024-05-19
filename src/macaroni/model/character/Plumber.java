@@ -29,6 +29,17 @@ public class Plumber extends Character {
     public Plumber(Element location) {
         super(location);
     }
+    
+    /**
+     * Creates a new Plumber with pumps in the hand.
+     *
+     * @param location the initial location of the plumber
+     * @param heldPumps the initial held pumps list
+     */
+    public Plumber(Element location, List<Pump> heldPumps) {
+        this(location);
+        this.heldPumps = heldPumps;
+    }
 
     /**
      * Repairs a chosen pipe.
