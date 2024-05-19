@@ -9,8 +9,10 @@ import macaroni.model.misc.WaterCollector;
 import macaroni.utils.ModelObjectFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mockStatic;
 
 public class DetachTests {
 
@@ -163,29 +165,30 @@ public class DetachTests {
         Cistern cistern = new Cistern(cisternCollector);
         Plumber plumber1 = new Plumber(cistern);
         Plumber plumber2 = new Plumber(cistern);
+        Pipe createdPipe = new Pipe(ground);
 
-        ModelObjectFactory.setCisternCreatePipeGround(ground);
-        ModelObjectFactory.setCisternCreatePipeName("pipe");
-        cistern.spawnPipe();
-        Pipe pipe = (Pipe) ModelObjectFactory.getObject("pipe");
+        try (MockedStatic<ModelObjectFactory> mock = mockStatic(ModelObjectFactory.class)) {
+            mock.when(ModelObjectFactory::cisternCreatePipe).thenReturn(createdPipe);
+            cistern.spawnPipe();
+        }
 
         // Assert
-        assertSame(pipe.getEndpoint(0), cistern);
+        assertSame(createdPipe.getEndpoint(0), cistern);
 
         // Act
-        boolean success = plumber1.detachPipe(cistern, pipe);
+        boolean success = plumber1.detachPipe(cistern, createdPipe);
 
         // Assert
         assertTrue(success);
-        assertSame(plumber1.getHeldPipe(), pipe);
-        assertSame(pipe.getEndpoint(0), cistern);
+        assertSame(plumber1.getHeldPipe(), createdPipe);
+        assertSame(createdPipe.getEndpoint(0), cistern);
 
         // Act
-        success = plumber2.detachPipe(cistern, pipe);
+        success = plumber2.detachPipe(cistern, createdPipe);
 
         // Assert
         assertTrue(success);
-        assertSame(plumber2.getHeldPipe(), pipe);
-        assertNull(pipe.getEndpoint(0));
+        assertSame(plumber2.getHeldPipe(), createdPipe);
+        assertNull(createdPipe.getEndpoint(0));
     }
 }
