@@ -1,6 +1,7 @@
 package macaroni.test;
 
 import macaroni.model.character.Plumber;
+import macaroni.model.element.Cistern;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class CharacterMoveTest {
 
+    private Cistern cistern;
     private Pipe pipe;
     private Pump pump1;
     private Pump pump2;
@@ -20,6 +22,8 @@ public class CharacterMoveTest {
     void setup() {
         ModelObjectFactory.reset();
         WaterCollector ground = new WaterCollector();
+        WaterCollector cisternCollector = new WaterCollector();
+        cistern = new Cistern(cisternCollector);
         pipe = new Pipe(ground);
         pump1 = new Pump();
         pump2 = new Pump();
@@ -72,5 +76,17 @@ public class CharacterMoveTest {
 
         assertTrue(success);
         assertEquals(pump2, plumber.getLocation());
+    }
+
+    @Test
+    void moveToCistern() {
+        assertTrue(pump1.addPipe(pipe));
+        assertTrue(cistern.addPipe(pipe));
+        var plumber = new Plumber(pipe);
+
+        boolean success = plumber.moveTo(cistern);
+
+        assertTrue(success);
+        assertEquals(cistern, plumber.getLocation());
     }
 }
