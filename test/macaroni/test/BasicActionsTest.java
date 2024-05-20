@@ -29,8 +29,8 @@ public class BasicActionsTest {
 		wc = new WaterCollector();
 		pipe = new Pipe(wc);
 		pump = new Pump();
-		pipe.addEndpoint(new Pump());
-		pipe.addEndpoint(new Pump());
+		new Pump().addPipe(pipe);
+		new Pump().addPipe(pipe);
 	}
 
 	@Test
@@ -281,8 +281,6 @@ public class BasicActionsTest {
 		var pump3 = new Pump();
 		pump1.addPipe(pipe);
 		pump2.addPipe(pipe);
-		pipe.addEndpoint(pump1);
-		pipe.addEndpoint(pump2);
 		var plumber = new Plumber(pipe, new ArrayList<>(Arrays.asList(pump3)), null);
 
 		ModelObjectFactory.setPipeCreatePipeName("newPipe");
@@ -304,8 +302,6 @@ public class BasicActionsTest {
 		var pump2 = new Pump();
 		pump1.addPipe(pipe);
 		pump2.addPipe(pipe);
-		pipe.addEndpoint(pump1);
-		pipe.addEndpoint(pump2);
 		var plumber = new Plumber(pipe);
 
 		ModelObjectFactory.setPipeCreatePipeName("newPipe");
