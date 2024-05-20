@@ -283,7 +283,7 @@ public class BasicActionsTest {
 		pump2.addPipe(pipe);
 		pipe.addEndpoint(pump1);
 		pipe.addEndpoint(pump2);
-		var plumber = new Plumber(pipe, new ArrayList<>(Arrays.asList(pump3)));
+		var plumber = new Plumber(pipe, new ArrayList<>(Arrays.asList(pump3)), null);
 
 		ModelObjectFactory.setPipeCreatePipeName("newPipe");
 		boolean success = plumber.placePump(pipe);
