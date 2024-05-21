@@ -27,7 +27,7 @@ public class AssetManager {
     static {
         try (Stream<Path> fontStream = Files.walk(Path.of("./assets/fonts"));
              Stream<Path> imgStream = Files.walk(Path.of("./assets/images"))) {
-            fontStream.filter(path -> Files.isRegularFile(path) && !path.endsWith("OFL.txt"))
+            fontStream.filter(path -> Files.isRegularFile(path) && path.toString().endsWith(".ttf"))
                     .forEach(path ->
                     {
                         try {
