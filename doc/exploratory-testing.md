@@ -1,10 +1,13 @@
-Exploratory testing keretében játszottunk a játékkal, közben minél több különböző lehetséges cselekvéssorozatot és pályát kipróbáltunk. A talált hibákhoz felvettünk issue-t GitHub-on, majd kijavítottuk őket.
+## Feladat: Manuális tesztek megtervezése, végrehajtása és dokumentálása vagy exploratory testing
 
-Fő issue: [Exploratory testing #25](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/25)
+Exploratory testing keretében játszottunk a játékkal, közben **minél több különböző lehetséges cselekvéssorozatot és pályát kipróbáltunk**. A talált hibákhoz felvettünk issue-t GitHub-on, majd kijavítottuk őket.
 
-Dolgozott rajta:
-- kereszthury
+### Fő feladat issue:
+[Exploratory testing #25](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/25)
+
+### Dolgozott rajta:
 - gabor7d2
+- kereszthury
 
 #### Ezeket az issue-kat vettük fel és javítottuk ki:
 - [MacOS issues #26](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/26)
