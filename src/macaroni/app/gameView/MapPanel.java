@@ -35,7 +35,7 @@ public final class MapPanel extends JPanel implements ModelObjectLoadedListener 
     /**
      * Constructs a map panel.
      *
-     * @param size the size of the panel
+     * @param size    the size of the panel
      * @param dragger the dragging utility to be used
      */
     public MapPanel(Dimension size, Dragger dragger) {
@@ -53,16 +53,16 @@ public final class MapPanel extends JPanel implements ModelObjectLoadedListener 
         // create views for active elements
         for (Object obj : objectPositions.keySet()) {
             switch (obj.getClass().getSimpleName()) {
-                case "Cistern" -> ViewRepository.add(obj, new CisternView(objectPositions.get(obj), (Cistern) obj));
-                case "Pump" -> ViewRepository.add(obj, new PumpView(objectPositions.get(obj), (Pump) obj));
-                case "Spring" -> ViewRepository.add(obj, new SpringView(objectPositions.get(obj), (Spring) obj));
+                case "Cistern" -> ViewRepository.add(obj, new CisternView(convertPosition(objectPositions.get(obj)), (Cistern) obj));
+                case "Pump" -> ViewRepository.add(obj, new PumpView(convertPosition(objectPositions.get(obj)), (Pump) obj));
+                case "Spring" -> ViewRepository.add(obj, new SpringView(convertPosition(objectPositions.get(obj)), (Spring) obj));
             }
         }
 
         // create views for pipes
         for (Object obj : ModelObjectFactory.getObjectList()) {
             if (obj instanceof Pipe p) {
-                ViewRepository.add(obj, new PipeView(p, new Position[] {
+                ViewRepository.add(obj, new PipeView(p, new Position[]{
                         ViewRepository.getViewOfObject(p.getEndpoint(0)).getPosition(),
                         ViewRepository.getViewOfObject(p.getEndpoint(1)).getPosition()
                 }));
@@ -96,6 +96,19 @@ public final class MapPanel extends JPanel implements ModelObjectLoadedListener 
                     locationView.getPosition(), saboteur, game.getCharacterName(saboteur)
             ));
         }
+    }
+
+    private static final double referenceWidth = 1536, referenceHeight = 864;
+    private final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    /**
+     * Converts the position from mapspace to screenspace based on resolution
+     * @param p the map position
+     * @return the converted position in pixel coordinates
+     */
+    private Position convertPosition(Position p) {
+        return new Position((int) (p.x() * screenSize.getWidth() / referenceWidth),
+                (int) (p.y() * screenSize.getHeight() / referenceHeight));
     }
 
     /**
