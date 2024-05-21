@@ -9,6 +9,9 @@ import macaroni.model.element.Pipe;
 import macaroni.model.character.Plumber;
 import macaroni.model.element.Cistern;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 import static org.mockito.Mockito.*;
 
 public class PlumberTester{
@@ -35,8 +38,8 @@ public class PlumberTester{
         testPlumberOnPump = new Plumber(mockPump);
         testPlumberOnPipe = new Plumber(mockPipe);
         testPlumberOnCistern = new Plumber(mockCistern);
-        testEquipedPlumberOnPipe = new Plumber(mockPipe, mockPumpheld, mockPipeheld);
-        testEquipedPlumberOnPump = new Plumber(mockPump, mockPumpheld, mockPipeheld);
+        testEquipedPlumberOnPipe = new Plumber(mockPipe, Collections.singletonList(mockPumpheld), mockPipeheld);
+        testEquipedPlumberOnPump = new Plumber(mockPump, Collections.singletonList(mockPumpheld), mockPipeheld);
 
 
     }
