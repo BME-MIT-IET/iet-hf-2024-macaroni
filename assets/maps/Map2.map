@@ -3,7 +3,7 @@ plumberCollector: WaterCollector
 saboteurCollector: WaterCollector
 	storedAmount = 0
 
-#[x = 1200, y = 800]
+#[x = 800, y = 400]
 c1: Cistern
 	newPipes = []
 	collector = plumberCollector
@@ -170,7 +170,7 @@ p9: Pipe
 	storedWater = 0
 	neighbours = [s1, c1]
 
-#[x = 1250, y = 700]
+#[x = 850, y = 300]
 pu1: Pump
 	ports = 6
 	tankCapacity = 5
@@ -181,7 +181,7 @@ pu1: Pump
 	connectedPipes = [p1, p2, p10]
 	neighbours = [p1, p2, p10]
 
-#[x = 1300, y = 750]
+#[x = 900, y = 350]
 pu2: Pump
 	ports = 7
 	tankCapacity = 5
@@ -192,7 +192,7 @@ pu2: Pump
 	connectedPipes = [p2, p3, p11]
 	neighbours = [p2, p3, p11]
 
-#[x = 1300, y = 850]
+#[x = 900, y = 450]
 pu3: Pump
 	ports = 6
 	tankCapacity = 5
@@ -203,7 +203,7 @@ pu3: Pump
 	connectedPipes = [p3, p4, p12]
 	neighbours = [p3, p4, p12]
 
-#[x = 1150, y = 900]
+#[x = 750, y = 500]
 pu4: Pump
 	ports = 5
 	tankCapacity = 5
@@ -214,7 +214,7 @@ pu4: Pump
 	connectedPipes = [p5, p6, p14]
 	neighbours = [p5, p6, p14]
 
-#[x = 1100, y = 850]
+#[x = 700, y = 450]
 pu5: Pump
 	ports = 3
 	tankCapacity = 5
@@ -225,7 +225,7 @@ pu5: Pump
 	connectedPipes = [p6, p7, p15]
 	neighbours = [p6, p7, p15]
 
-#[x = 1100, y = 750]
+#[x = 700, y = 350]
 pu6: Pump
 	ports = 5
 	tankCapacity = 5
@@ -236,13 +236,13 @@ pu6: Pump
 	connectedPipes = [p7, p8, p16]
 	neighbours = [p7, p8, p16]
 
-#[x = 1150, y = 700]
+#[x = 750, y = 300]
 s1: Spring
 	waterDispensedPerTick = 2
 	connectedPipes = [p1, p8, p9]
 	neighbours = [p1, p8, p9]
 
-#[x = 1250, y = 900]
+#[x = 850, y = 500]
 s2: Spring
 	waterDispensedPerTick = 2
 	connectedPipes = [p4, p5, p13]
