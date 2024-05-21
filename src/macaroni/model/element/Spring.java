@@ -26,6 +26,16 @@ public class Spring extends ActiveElement {
         this(4);
     }
 
+     /**
+     * For Testing! 
+     * Creates a new Spring with the given dispensed per tick value,
+     * and connects the given Pipe. 
+     */
+    public Spring(int waterDispensedPerTick, Pipe pipe) {
+        this.waterDispensedPerTick = waterDispensedPerTick;
+        this.connectedPipes.add(pipe);
+    }
+
     /**
      * Steps the waterflow by pushing water to connected pipes.
      */

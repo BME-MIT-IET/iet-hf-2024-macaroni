@@ -1,4 +1,4 @@
-/*
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -15,16 +15,18 @@ import macaroni.utils.ModelObjectFactory;
 public class CisternTester {
 
     private Cistern testCistern;
+    private Cistern testButaCistern;
     private Pipe mockPipe;
+    private Pipe mockPipeNew;
     private WaterCollector mockWaterCollector;
-    private ModelObjectFactory mockModelObjectFactory;
 
     @BeforeEach
     public void init(){
         mockPipe = mock(Pipe.class);
+        mockPipeNew = mock(Pipe.class);
         mockWaterCollector = mock(WaterCollector.class);
-        mockModelObjectFactory = mock(ModelObjectFactory.class);
-        testCistern = new Cistern(mockWaterCollector);
+        testCistern = new Cistern(mockWaterCollector, mockPipe, mockPipeNew);
+        testButaCistern = new Cistern(mockWaterCollector);
     }
 
    @Test
@@ -41,11 +43,31 @@ public class CisternTester {
    } 
 
    @Test
-   public void AcquirePumpTest(){
+   public void acquirePumpTest(){
         
-        assertNotEquals(testCistern.acquirePump(), null);
+          ModelObjectFactory.setCisternCreatePumpName("Test");
+          assertNotEquals(testButaCistern.acquirePump(), null);
+
+   }
+
+   @Test
+   public void spawnPipeTest(){
+        
+          ModelObjectFactory.setCisternCreatePipeName("Test");
+          testCistern.spawnPipe();
+          assertEquals(testCistern.getNewPipesSize(), 2);
+
+   }
+
+   @Test
+   public void removePipeTest(){
+        
+          boolean result1 = testCistern.removePipe(mockPipe);
+          boolean result2 = testCistern.removePipe(mockPipeNew);
+          assertEquals(result1, false);
+          assertEquals(result2, true);
 
    }
 
 }
-*/
+
