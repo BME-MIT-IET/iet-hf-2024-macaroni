@@ -21,6 +21,7 @@ public abstract class View {
     public Position getPosition() {
         return position;
     }
+    public void setPosition(Position p) { position = p; }
 
     /**
      * A kirajzolásért felelős függvény, absztrakt.
