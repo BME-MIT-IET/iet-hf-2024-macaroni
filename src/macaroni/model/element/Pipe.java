@@ -309,6 +309,13 @@ public class Pipe extends Element {
     }
 
     /**
+     * @return whether the pipe is occupied or not
+     */
+    public boolean isOccupied() {
+        return occupied;
+    }
+
+    /**
      * @return whether the pipe is pierced or not
      */
     public boolean isPierced() {
