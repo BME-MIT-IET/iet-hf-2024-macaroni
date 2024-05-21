@@ -3,7 +3,9 @@ package macaroni.actions;
 import macaroni.app.gameView.ViewRepository;
 import macaroni.model.character.Character;
 import macaroni.model.character.Plumber;
+import macaroni.model.effects.BananaEffect;
 import macaroni.model.element.Element;
+import macaroni.model.element.Pipe;
 import macaroni.views.CharacterView;
 import macaroni.views.PipeView;
 
@@ -34,22 +36,29 @@ public class MoveAction extends Action {
      */
     @Override
     public boolean doAction(Element element) {
+        var moveToBananaPipe = element instanceof Pipe pipe && pipe.getEffect() instanceof BananaEffect && !pipe.isOccupied();
         var locationBeforeMove = actor.getLocation();
         var success = actor.moveTo(element);
-        System.out.println("Move success: " + success);
-        if (success) {
-            var characterView = (CharacterView) ViewRepository.getViewOfObject(actor);
-            characterView.setPosition(ViewRepository.getViewOfObject(element).getPosition());
-            if (actor instanceof Plumber plumber) {
-                if (plumber.getHeldPipe() != null) {
+        var locationAfterMove = actor.getLocation();
+
+        if (success || moveToBananaPipe) {
+            System.out.println("Move success");
+
+            if (locationBeforeMove != locationAfterMove) {
+                var characterView = (CharacterView) ViewRepository.getViewOfObject(actor);
+                characterView.setPosition(ViewRepository.getViewOfObject(locationAfterMove).getPosition());
+
+                if (actor instanceof Plumber plumber && plumber.getHeldPipe() != null) {
                     var heldPipeView = (PipeView) ViewRepository.getViewOfObject(plumber.getHeldPipe());
                     heldPipeView.replaceEndpointPos(
                             ViewRepository.getViewOfObject(locationBeforeMove).getPosition(),
-                            ViewRepository.getViewOfObject(actor.getLocation()).getPosition()
+                            ViewRepository.getViewOfObject(locationAfterMove).getPosition()
                     );
                 }
             }
+            return true;
         }
-        return success;
+        System.out.println("Move fail");
+        return false;
     }
 }
