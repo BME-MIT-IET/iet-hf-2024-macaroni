@@ -33,15 +33,17 @@ public class Plumber extends Character {
     /**
      * Creates a new Plumber.
      * Use for testing.
-     * 
+     *
      * @param location the initial location of the plumber
-     * @param pump held pump
-     * @param pipe held pipe
+     * @param heldPumps the initial held pumps
+     * @param pipe the initial held pipe
      */
-    public Plumber(Element location, Pump pump, Pipe pipe){
+    public Plumber(Element location, List<Pump> heldPumps, Pipe pipe){
         super(location);
         heldPipe = pipe;
-        heldPumps.add(pump);
+        if (heldPumps != null) {
+            this.heldPumps = heldPumps;
+        }
     }
 
     /**

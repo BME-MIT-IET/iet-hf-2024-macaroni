@@ -124,11 +124,18 @@ public class Pipe extends Element {
      */
     @Override
     public boolean enter(Character character, Element from) {
-        Random.setCharacterLocationBeforeEnteringPipe(this, from);
-        if (neighbours.contains(from) && !occupied && endpoints.size() == 2) {
-            if (effect.enter(character)) {
-                occupied = true;
-                return true;
+        if (!occupied && endpoints.size() == 2) {
+            if (from == null) {
+                if (character.leave(this)) {
+                    occupied = true;
+                    return true;
+                }
+            } else if (neighbours.contains(from)) {
+                Random.setCharacterLocationBeforeEnteringPipe(this, from);
+                if (effect.enter(character)) {
+                    occupied = true;
+                    return true;
+                }
             }
         }
         return false;
@@ -315,6 +322,13 @@ public class Pipe extends Element {
     public Effect getEffect() {
         // TODO document function
         return effect;
+    }
+
+    /**
+     * @return whether the pipe is occupied or not
+     */
+    public boolean isOccupied() {
+        return occupied;
     }
 
     /**
