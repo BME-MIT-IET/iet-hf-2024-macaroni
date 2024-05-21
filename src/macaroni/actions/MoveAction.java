@@ -60,10 +60,12 @@ public class MoveAction extends Action {
                         v.setPosition(heldPipeView.getPosition());
                     }
 
-                    var connectedElement = heldPipe.getEndpoint(0) != null ? heldPipe.getEndpoint(0) : heldPipe.getEndpoint(1);
-                    if (connectedElement instanceof Pump) {
+                    var connectedElement = heldPipe.getEndpoint(0);
+                    if (connectedElement instanceof Pump pump) {
                         var pumpView = (PumpView) ViewRepository.getViewOfObject(connectedElement);
-                        //pumpView.setInputPipePos(); TODO
+
+                        if (pump.getInputPipe() == heldPipe) pumpView.setInputPipePos(heldPipeView.getPosition());
+                        if (pump.getOutputPipe() == heldPipe) pumpView.setOutputPipePos(heldPipeView.getPosition());
                     }
                 }
             }

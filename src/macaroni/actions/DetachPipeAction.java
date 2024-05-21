@@ -4,7 +4,9 @@ import macaroni.app.gameView.ViewRepository;
 import macaroni.model.character.Plumber;
 import macaroni.model.element.ActiveElement;
 import macaroni.model.element.Pipe;
+import macaroni.model.element.Pump;
 import macaroni.views.PipeView;
+import macaroni.views.PumpView;
 
 /**
  * Cső aktív elemről való lekötési interakciót kezelő osztály.
@@ -47,6 +49,13 @@ public class DetachPipeAction extends Action {
                     ViewRepository.getViewOfObject(activeElement).getPosition(),
                     ViewRepository.getViewOfObject(actor).getPosition()
             );
+
+            if (activeElement instanceof Pump pump) {
+                var pumpView = (PumpView) ViewRepository.getViewOfObject(activeElement);
+
+                if (pump.getInputPipe() == null) pumpView.setInputPipePos(null);
+                if (pump.getOutputPipe() == null) pumpView.setOutputPipePos(null);
+            }
         }
         return success;
     }
