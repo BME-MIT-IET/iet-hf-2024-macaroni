@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class UiTest {
     private FrameFixture window;
 
@@ -54,10 +56,13 @@ public class UiTest {
                 return true;
             }
         });
+
+        var plumberName = "slububu";
         elements.requireItemCount(0);
-        textBox.enterText("slububu");
+        textBox.enterText(plumberName);
         submitButton.click();
         elements.requireItemCount(1);
+        assertEquals(plumberName, elements.contents()[0]);
     }
 
     @AfterEach
