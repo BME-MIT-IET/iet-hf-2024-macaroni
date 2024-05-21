@@ -27,6 +27,15 @@ public final class Window extends JFrame {
         setIgnoreRepaint(true);
         setUndecorated(true);
 
+
+        if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+            // TODO this works for fullscreen, but still has some issues (can't exit it, only by Cmd+Q)
+            // https://github.com/ymasory/OrangeExtensions
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            GraphicsDevice myDevice = ge.getDefaultScreenDevice();
+            myDevice.setFullScreenWindow(this);
+        }
+
         getContentPane().setLayout(new CardLayout());
         Controller controller = new Controller(this);
         add(new MainMenu(controller, getSize()), Controller.MenuTag.MAIN.toString());
