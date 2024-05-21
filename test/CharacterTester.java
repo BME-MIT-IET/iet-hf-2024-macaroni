@@ -20,8 +20,8 @@ public class CharacterTester {
     public void init(){
         mockPump = mock(Pump.class);
         mockPipe = mock(Pipe.class);
-        testPlumberOnPump = new Plumber(mockPump);
-        testPlumberOnPipe = new Plumber(mockPipe);
+        testPlumberOnPump = new Plumber(mockPump, true);
+        testPlumberOnPipe = new Plumber(mockPipe, true);
         
     }
 

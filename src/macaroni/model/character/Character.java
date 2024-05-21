@@ -34,6 +34,15 @@ public abstract class Character {
     }
 
     /**
+     * Creates a new Character.
+     *
+     * @param location the initial location of the character, for testing.
+     */
+    public Character(Element location, boolean b) {
+        this.location = location;
+    }
+
+    /**
      * The character tries to move to the given destination.
      *
      * @param destination the element where the character is trying to move to

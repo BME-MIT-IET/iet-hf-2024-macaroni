@@ -12,6 +12,7 @@ import macaroni.model.element.Cistern;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class PlumberTester{
@@ -35,11 +36,11 @@ public class PlumberTester{
         mockPumpheld = mock(Pump.class);
         mockPipeheld = mock(Pipe.class);
         mockCistern = mock(Cistern.class);
-        testPlumberOnPump = new Plumber(mockPump);
-        testPlumberOnPipe = new Plumber(mockPipe);
-        testPlumberOnCistern = new Plumber(mockCistern);
-        testEquipedPlumberOnPipe = new Plumber(mockPipe, Collections.singletonList(mockPumpheld), mockPipeheld);
-        testEquipedPlumberOnPump = new Plumber(mockPump, Collections.singletonList(mockPumpheld), mockPipeheld);
+        testPlumberOnPump = new Plumber(mockPump, true);
+        testPlumberOnPipe = new Plumber(mockPipe, true);
+        testPlumberOnCistern = new Plumber(mockCistern, true);
+        testEquipedPlumberOnPipe = new Plumber(mockPipe, mockPumpheld, mockPipeheld, true);
+        testEquipedPlumberOnPump = new Plumber(mockPump, mockPumpheld, mockPipeheld, true);
 
 
     }

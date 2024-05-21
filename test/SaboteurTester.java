@@ -9,6 +9,8 @@ import macaroni.model.character.Saboteur;
 
 import static org.mockito.Mockito.*;
 
+import macaroni.model.element.Element;
+
 public class SaboteurTester {
     private Pump mockPump;
     private Pipe mockPipe;
@@ -19,9 +21,9 @@ public class SaboteurTester {
     public void init(){
         mockPump = mock(Pump.class);
         mockPipe = mock(Pipe.class);
+        testSaboteurOnPump = new Saboteur(mockPump, true);
+        testSaboteurOnPipe = new Saboteur(mockPipe, true);
         
-        testSaboteurOnPump = new Saboteur(mockPump);
-        testSaboteurOnPipe = new Saboteur(mockPipe);
     }
 
     @Test
@@ -35,7 +37,6 @@ public class SaboteurTester {
 
     @Test
     public void dropBananaFail(){
-
         //Act
         boolean result = testSaboteurOnPump.dropBanana(mockPipe);
         assertEquals(result, false);

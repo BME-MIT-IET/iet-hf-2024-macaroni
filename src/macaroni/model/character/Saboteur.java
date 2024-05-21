@@ -19,6 +19,15 @@ public class Saboteur extends Character {
     }
 
     /**
+     * Creates a new Saboteur.
+     *
+     * @param location the initial location of the saboteur
+     */
+    public Saboteur(Element location, boolean b) {
+        super(location, b);
+    }
+
+    /**
      * Drops a banana effect on the pipe, that will in turn make it slippery.
      * <p></p>
      * This action will only be successful if the saboteur is standing on the given pipe.
