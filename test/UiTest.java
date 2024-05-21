@@ -49,6 +49,24 @@ public class UiTest {
         assertEquals(plumberName, elements.contents()[0]);
     }
 
+    @Test
+    public void addPlayerToSaboteurTeam() {
+        var saboteurPanel = window.panel(matchClass(TeamPanel.class, (panel) ->
+                Arrays.stream(panel.getComponents())
+                        .anyMatch(c -> c instanceof MenuLabel ml && ml.getText().equals("Plumbers"))
+        ));
+        var elements = saboteurPanel.list(matchClass(MenuList.class));
+        var textBox = saboteurPanel.textBox(matchClass(TeamTextBox.class));
+        var submitButton = saboteurPanel.button(matchClass(MenuTeamButton.class));
+
+        var saboteurName = "wabalaba";
+        elements.requireItemCount(0);
+        textBox.enterText(saboteurName);
+        submitButton.click();
+        elements.requireItemCount(1);
+        assertEquals(saboteurName, elements.contents()[0]);
+    }
+
     @AfterEach
     public void tearDown() {
         window.cleanUp();
