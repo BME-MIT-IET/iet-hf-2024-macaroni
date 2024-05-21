@@ -78,6 +78,22 @@ public class Pipe extends Element {
     }
 
     /**
+     * for Testing
+     * 
+     * Creates a new Pipe, with a default capacity of 10 and two endpoints.
+     * Adds water too.
+     *
+     * @param ground the WaterCollector where the pipe should store the water that leaks from it
+     */
+    public Pipe(WaterCollector ground, ActiveElement e1, ActiveElement e2) {
+        this(ground, 10);
+        this.endpoints.add(e2);
+        this.endpoints.add(e1);
+        this.storedWater = this.capacity;
+
+    }
+
+    /**
      * @return a random (not null) endpoint of the pipe.
      */
     public ActiveElement getRandomEndpoint() {
@@ -328,4 +344,17 @@ public class Pipe extends Element {
     public int getStoredWater() {
         return storedWater;
     }
+
+    /**
+     * Testing
+     */
+    public void setPierceCooldown(int i){
+        pierceCooldown = i;
+    }
+
+    public int getPierceCooldown(){return pierceCooldown;}
+    public void setOccupied(boolean b){occupied=b;}
+    
+    
+
 }
