@@ -10,7 +10,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.Arrays;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,32 +32,14 @@ public class UiTest {
     }
 
     @Test
-    public void test() {
-        var plumberPanel = window.panel(new GenericTypeMatcher<>(TeamPanel.class) {
-            @Override
-            protected boolean isMatching(TeamPanel jPanel) {
-                return Arrays.stream(jPanel.getComponents())
-                        .anyMatch(c -> c instanceof MenuLabel ml && ml.getText().equals("Plumbers"));
-            }
-        });
-        var elements = plumberPanel.list(new GenericTypeMatcher<>(MenuList.class) {
-            @Override
-            protected boolean isMatching(MenuList jList) {
-                return true;
-            }
-        });
-        var textBox = plumberPanel.textBox(new GenericTypeMatcher<>(TeamTextBox.class) {
-            @Override
-            protected boolean isMatching(TeamTextBox jTextComponent) {
-                return true;
-            }
-        });
-        var submitButton = plumberPanel.button(new GenericTypeMatcher<>(MenuTeamButton.class) {
-            @Override
-            protected boolean isMatching(MenuTeamButton jButton) {
-                return true;
-            }
-        });
+    public void addPlayerToPlumberTeam() {
+        var plumberPanel = window.panel(matchClass(TeamPanel.class, (panel) ->
+                Arrays.stream(panel.getComponents())
+                        .anyMatch(c -> c instanceof MenuLabel ml && ml.getText().equals("Plumbers"))
+        ));
+        var elements = plumberPanel.list(matchClass(MenuList.class));
+        var textBox = plumberPanel.textBox(matchClass(TeamTextBox.class));
+        var submitButton = plumberPanel.button(matchClass(MenuTeamButton.class));
 
         var plumberName = "slububu";
         elements.requireItemCount(0);
@@ -68,5 +52,18 @@ public class UiTest {
     @AfterEach
     public void tearDown() {
         window.cleanUp();
+    }
+
+    private <T extends Component> GenericTypeMatcher<T> matchClass(Class<T> tClass) {
+        return matchClass(tClass, t -> true);
+    }
+
+    private <T extends Component> GenericTypeMatcher<T> matchClass(Class<T> tClass, Function<T, Boolean> filter) {
+        return new GenericTypeMatcher<>(tClass) {
+            @Override
+            protected boolean isMatching(T t) {
+                return filter.apply(t);
+            }
+        };
     }
 }
