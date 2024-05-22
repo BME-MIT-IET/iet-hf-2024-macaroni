@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MenuMapSelectTest extends UiTest {
@@ -40,6 +41,7 @@ public class MenuMapSelectTest extends UiTest {
         elements.requireNoSelection();
         elements.clickItem(mapName);
         elements.requireSelection(mapName);
+        assertEquals(mapName, elements.targetCastedTo(MenuList.class).getSelectedElement());
     }
 
     @AfterEach

@@ -28,7 +28,7 @@ public class MenuPlayerRegisterTests extends UiTest {
     public void addPlayerToSaboteurTeam() {
         var saboteurPanel = window.panel(matchClass(TeamPanel.class, (panel) ->
                 Arrays.stream(panel.getComponents())
-                        .anyMatch(c -> c instanceof MenuLabel ml && ml.getText().equals("Plumbers"))
+                        .anyMatch(c -> c instanceof MenuLabel ml && ml.getText().equals("Saboteurs"))
         ));
         var elements = saboteurPanel.list(matchClass(MenuList.class));
         var textBox = saboteurPanel.textBox(matchClass(TeamTextBox.class));
