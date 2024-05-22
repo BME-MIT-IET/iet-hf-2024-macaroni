@@ -1,3 +1,5 @@
+package macaroni.ui;
+
 import macaroni.app.menuView.MainMenu;
 import macaroni.app.menuView.MenuLabel;
 import macaroni.app.menuView.MenuList;
@@ -12,7 +14,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MenuMapSelectTest extends UiTest {
+public class MenuMapSelectTests extends UiTests {
     private File tempMapFile;
 
     @BeforeEach

@@ -1,7 +1,8 @@
+package macaroni.model.element;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -11,12 +12,8 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 import macaroni.model.effects.BananaEffect;
-import macaroni.model.element.Pipe;
-import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
 import macaroni.utils.ModelObjectFactory;
-import macaroni.utils.Random;
-
 
 public class PipeTester {
 

@@ -1,3 +1,5 @@
+package macaroni.ui;
+
 import macaroni.app.App;
 import macaroni.app.Window;
 import org.assertj.swing.core.GenericTypeMatcher;
@@ -11,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import java.awt.*;
 import java.util.function.Function;
 
-public class UiTest {
+public class UiTests {
     protected FrameFixture window;
 
     @BeforeAll

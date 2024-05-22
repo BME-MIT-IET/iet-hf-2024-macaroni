@@ -1,3 +1,5 @@
+package macaroni.model.element;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -8,10 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
-
-import macaroni.model.element.Pipe;
-import macaroni.model.element.Pump;
-
 
 public class PumpTester {
     

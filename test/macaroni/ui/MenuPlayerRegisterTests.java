@@ -1,3 +1,5 @@
+package macaroni.ui;
+
 import macaroni.app.menuView.*;
 import org.assertj.swing.core.KeyPressInfo;
 import org.junit.jupiter.api.Test;
@@ -7,7 +9,7 @@ import java.util.Arrays;
 import static java.awt.event.KeyEvent.VK_ENTER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MenuPlayerRegisterTests extends UiTest {
+public class MenuPlayerRegisterTests extends UiTests {
     @Test
     public void addPlayerToPlumberTeam() {
         var plumberPanel = window.panel(matchClass(TeamPanel.class, (panel) ->

@@ -1,3 +1,5 @@
+package macaroni;
+
 import macaroni.model.character.Saboteur;
 import macaroni.model.effects.BananaEffect;
 import macaroni.model.effects.Effect;
@@ -14,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ElementTickTest {
+public class ElementTickTests {
     private WaterCollector ground;
     private Pump pump1, pump2, pump3;
     private Spring spring1;

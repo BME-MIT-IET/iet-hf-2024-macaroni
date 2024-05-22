@@ -1,4 +1,5 @@
-import macaroni.math.Vector2D;
+package macaroni.math;
+
 import macaroni.views.Position;
 import org.junit.jupiter.api.Test;
 
