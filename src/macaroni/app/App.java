@@ -17,6 +17,10 @@ public final class App {
      */
     private final Window window = new Window();
 
+    public Window getWindow() {
+        return window;
+    }
+
     /**
      * Runs the application
      */
