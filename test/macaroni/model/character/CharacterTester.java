@@ -1,10 +1,11 @@
+package macaroni.model.character;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import macaroni.model.element.Pump;
 import macaroni.model.element.Pipe;
-import macaroni.model.character.Plumber;
 
 import static org.mockito.Mockito.*;
 

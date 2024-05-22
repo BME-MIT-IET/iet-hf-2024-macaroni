@@ -1,4 +1,4 @@
-//package macaroni.model.character;
+package macaroni.model.character;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,13 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import macaroni.model.element.Pump;
 import macaroni.model.element.Pipe;
-import macaroni.model.character.Plumber;
 import macaroni.model.element.Cistern;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class PlumberTester{

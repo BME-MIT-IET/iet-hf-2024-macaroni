@@ -1,12 +1,9 @@
+package macaroni.model.element;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
-
-import macaroni.model.element.Spring;
-import macaroni.model.element.Pipe;
-
-
 
 public class SpringTester {
     private Spring testSpring;

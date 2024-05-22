@@ -1,3 +1,4 @@
+package macaroni.model.element;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -7,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-import macaroni.model.element.Cistern;
-import macaroni.model.element.Pipe;
 import macaroni.model.misc.WaterCollector;
 import macaroni.utils.ModelObjectFactory;
 

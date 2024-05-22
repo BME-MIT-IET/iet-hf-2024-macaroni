@@ -1,4 +1,4 @@
-package macaroni.test;
+package macaroni;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +18,7 @@ import macaroni.model.element.Pump;
 import macaroni.model.misc.WaterCollector;
 import macaroni.utils.ModelObjectFactory;
 
-public class BasicActionsTest {
+public class BasicActionsTests {
 	private Pipe pipe;
 	private Pump pump;
 	private WaterCollector wc;

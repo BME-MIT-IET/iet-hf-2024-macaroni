@@ -1,3 +1,5 @@
+package macaroni;
+
 import macaroni.model.element.Cistern;
 import macaroni.model.element.Pipe;
 import macaroni.model.element.Pump;
@@ -9,7 +11,7 @@ import org.mockito.MockedStatic;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ControllerActionsTest {
+public class ControllerActionsTests {
 
     @Test
     void breakPump() {

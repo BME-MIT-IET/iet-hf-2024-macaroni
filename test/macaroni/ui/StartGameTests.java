@@ -1,3 +1,5 @@
+package macaroni.ui;
+
 import macaroni.app.gameView.GamePanel;
 import macaroni.app.menuView.*;
 import org.junit.jupiter.api.AfterEach;
@@ -10,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
 
-public class StartGameTest extends UiTest {
+public class StartGameTests extends UiTests {
     private File tempMapFile;
 
     @BeforeEach
@@ -18,7 +20,7 @@ public class StartGameTest extends UiTest {
         try {
             tempMapFile = File.createTempFile("temp-", ".map", new File("./assets/maps"));
             try (var fileOutputStream = new FileOutputStream(tempMapFile)) {
-                Files.copy(Path.of("./test/test.map"), fileOutputStream);
+                Files.copy(Path.of("./test/macaroni/ui/test.map"), fileOutputStream);
             }
             super.setUp();
         } catch (Exception e) {

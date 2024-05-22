@@ -1,4 +1,4 @@
-package macaroni.test;
+package macaroni;
 
 import macaroni.model.character.Plumber;
 import macaroni.model.character.Saboteur;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CharacterMoveTest {
+public class CharacterMoveTests {
     private Cistern cistern;
 
     private Pipe cisternPipe;
