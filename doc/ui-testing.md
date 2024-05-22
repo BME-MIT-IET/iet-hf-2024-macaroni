@@ -2,7 +2,7 @@
 
 Hasznos felállítani egy automatizált UI tesztrendszert, mert a tesztek minden futtatásnál ugyanazt az inputot adják az
 alkalmazásnak, ami emberileg közel lehetetlen.
-A feladathoz a Swing UI támogatással rendelkező az **AssertJ** keretrendszert választottuk, ami a **JUnit**
+A feladathoz a Swing UI támogatással rendelkező **AssertJ** keretrendszert választottuk, ami a **JUnit**
 egységtesztjeibe épül be.
 
 Az alkalmazás menüjét és részben a játék nézetét teszteltük egységtesztekkel, illetve egy hosszabb és átfogóbb teszttel,
@@ -27,4 +27,4 @@ Megállapítottuk, hogy a UI elemek jól működnek több fajta bevitelre is,
 és most már fontosabbnak tartjuk a UI gépi tesztelését.
 
 Code coverage a UI package-eiben:
-![](screenshots/img.png)
+![](screenshots/code_coverage_ui.png)
