@@ -60,6 +60,22 @@ public class Pump extends ActiveElement {
     }
 
     /**
+     * For Testing
+     * Creates a new Pump, with a default tank capacity of 5,
+     * and a default port count of 4, adds an in and an out pipe, 
+     * a connected pipe and some water.
+     */
+    public Pump(Pipe in, Pipe out, Pipe con, int water) {
+        this(4, 5);
+        this.inputPipe = in;
+        this.outputPipe = out;
+        this.tankStoredWater = water;
+        this.connectedPipes.add(con);
+        this.connectedPipes.add(in);
+        this.connectedPipes.add(out);
+    }
+
+    /**
      * Gets the amount of stored water in the pump.
      * @return the amount of stored water
      */

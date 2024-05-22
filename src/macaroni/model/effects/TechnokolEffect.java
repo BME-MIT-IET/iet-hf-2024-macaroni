@@ -51,7 +51,9 @@ public final class TechnokolEffect extends Effect {
     public boolean leave() {
         if (activated) {
             return false;
-        } else {
+        } 
+        
+        else {
             activated = true;
             return true;
         }
