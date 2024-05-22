@@ -35,3 +35,4 @@ Ezenkívül a Github CI-t is kiegészítettük, hogy a teszteket futtassa le min
   - PR: [Add basic actions tests #28](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/28)
   - reviewer: homok43
 
+TODO eredmények és tanulságok
