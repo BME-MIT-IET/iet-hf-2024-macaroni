@@ -17,4 +17,5 @@ A GitHub Actions tovább fejleszti ezt a beállítást a folyamatos integráció
   - PR: [Setup Github Actions #5](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/5)
     - reviewer: gabor7d2
 
-TODO eredmények és tanulságok, képernyőkép
+A Gradle és a CI beüzemelése megkönnyítette a Pull Requestek ellenőrzését, és a tesztek futtatását.
+![CI Screenshot](ci.png)
