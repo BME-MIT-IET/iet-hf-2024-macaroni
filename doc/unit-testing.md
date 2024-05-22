@@ -4,9 +4,11 @@ A projekt tartalmazott egy egyedi teszt keretrendszert, illetve teszteket. Ezek 
 - **egyrészt nem standard teszt keretrendszer**, így új, a projekten dolgozó embereknek nem lesz rögtön magától értetődő, mi hogyan működik
 - **másrészt**, ami a nagyobb probléma, hogy ez a teszter **reflection-nel tesztel**, ami erősen sérti a unit tesztelés fogalmát, mivel a belső működést, állapotokat is mind nézi, és a kód bővíthetőségét is erősen korlátozza, ugyanis ha valamilyen változót átnevez valaki a modellben, pár teszt sikertelen lesz.
 
-Ezt az egyedi tesztert cseréltük le egy standard megoldásra: **JUnit tesztekre**. A feladat magában foglalta a régi, egyedi teszterhez készített tesztek átmigrálását JUnit-ba, ezenkívül a modellhez unit tesztek készítését, ami **mockito segítségével** egyszerre csak egy kis szeletét (ideálisan egy osztály egy függvényét) teszteli a modellnek. Erre azért volt szükség, mivel az alap tesztek objektumok közötti interakciót tesztelnek, ebben a projektben a modell részei erősen függnek egymástól, így fontosnak tartottuk, hogy **izolálva is le legyenek tesztelve a modell osztályok**.
+Ezt az egyedi tesztert cseréltük le egy standard megoldásra: **JUnit tesztekre**. A feladat magában foglalta a régi, egyedi teszterhez készített tesztek átmigrálását JUnit-ba, ezenkívül a modellhez unit tesztek készítését.
 
-**Kódlefedettséget JaCoCo segítségével néztük**, és amelyik osztálynak nem volt 100%-os a kódlefedettsége, ahhoz **új teszteket is felvettünk**. 
+A modellhez tartozó unit tesztekben az egyes osztályokat elkülönítve, önmagukban teszteltük. A még jobb elkülünölés érdekében a **Mockito-t hívtuk segítségül**, ami úgynevezett mock-okkal pótolja az esetleges függőségeket, így a **vizsgált osztály semmilyen szinten nem függ más osztályok megvalósításától**. Erre azért volt szükség, mivel az alap tesztek objektumok közötti interakciót tesztelnek, és ebben a projektben a modell részei erősen függnek egymástól, így fontosnak tartottuk, hogy **izolálva is le legyenek tesztelve a modell osztályok**.
+
+**Kódlefedettséget JaCoCo segítségével néztük**, és amelyik osztálynak nem volt 100%-os a kódlefedettsége, ahhoz **új teszteket is felvettünk**.
 
 Ezenkívül a Github CI-t is kiegészítettük, hogy a teszteket futtassa le minden pull request létrehozásakor, illetve committoláskor.
 
