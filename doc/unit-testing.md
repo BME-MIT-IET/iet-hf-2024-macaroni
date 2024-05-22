@@ -10,8 +10,7 @@ Ezt az egyedi tesztert cseréltük le egy standard megoldásra: **JUnit tesztekr
 
 Ezenkívül a Github CI-t is kiegészítettük, hogy a teszteket futtassa le minden pull request létrehozásakor, illetve committoláskor.
 
-### Fő feladat issue:
-[Unit testing #6](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/6)
+### Fő feladat issue: [Unit testing #6](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/6)
 
 ### Dolgozott rajta:
 - BBalint1997

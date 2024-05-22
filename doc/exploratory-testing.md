@@ -2,8 +2,7 @@
 
 Exploratory testing keretében játszottunk a játékkal, közben **minél több különböző lehetséges cselekvéssorozatot és pályát kipróbáltunk**. A talált hibákhoz felvettünk issue-t GitHub-on, majd kijavítottuk őket.
 
-### Fő feladat issue:
-[Exploratory testing #25](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/25)
+### Fő feladat issue: [Exploratory testing #25](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/25)
 
 ### Dolgozott rajta:
 - gabor7d2

@@ -6,8 +6,7 @@ A Gradle megkönnyíti a függőségek kezelését és a kód fordítását. A b
 
 A GitHub Actions tovább fejleszti ezt a beállítást a folyamatos integráció (CI) folyamatának automatizálásával. A GitHub repo-ban található egy munkafolyamat-fájl (.github/workflows/gradle.yml), amely YAML-formátumban leírja a CI-folyamat lépéseit. Ez magában foglalja a megfelelő JDK-környezet beállítását és a Gradle-parancsok, például a ./gradlew build végrehajtását. A GitHub Actions lehetővé teszi, hogy minden push vagy pull request automatikusan elindítsa a meghatározott munkafolyamatot, futtatva a teszteket és buildeket, azonnali visszajelzést adva a kód minőségéről és az integráció állapotáról.
 
-### Fő feladat issue:
-[Configure build framework & CI #36](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/36)
+### Fő feladat issue: [Configure build framework & CI #36](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/36)
 
 ### Dolgozott rajta:
 - tomecz-tamas
