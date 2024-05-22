@@ -30,6 +30,19 @@ public class Cistern extends ActiveElement {
         collector = waterCollector;
     }
 
+     /**
+      * 
+      * For Testing.
+      * Creates a new cistern, With a connected Pipe
+      *
+      * @param waterCollector the collector that stores the collected water
+      */
+    public Cistern(WaterCollector waterCollector, Pipe pipeConnected, Pipe pipeNew) {
+        collector = waterCollector;
+        this.connectedPipes.add(pipeConnected);
+        this.newPipes.add(pipeNew);
+    }
+
     /**
      * Steps the waterflow by sucking the water out from connected pipes.
      */
@@ -73,5 +86,14 @@ public class Cistern extends ActiveElement {
      */
     public Pump acquirePump() {
         return ModelObjectFactory.cisternCreatePump();
+    }
+
+    /**
+     * For Testing
+     * 
+     * @return number of pipes in newPipes
+     */
+    public int getNewPipesSize(){
+        return newPipes.size();
     }
 }
