@@ -18,4 +18,4 @@ A GitHub Actions tovább fejleszti ezt a beállítást a folyamatos integráció
     - reviewer: gabor7d2
 
 A Gradle és a CI beüzemelése megkönnyítette a Pull Requestek ellenőrzését, és a tesztek futtatását.
-![CI Screenshot](ci.png)
+![CI Screenshot](screenshots/ci.png)
