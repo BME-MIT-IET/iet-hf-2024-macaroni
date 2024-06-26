@@ -7,3 +7,13 @@ Az alkalmazás rendelkezik ablakos és parancssoros megjelenítési opciókkal i
 Emellett szeretnénk automatikus gradle build rendszert is beállítani, hogy a projekt könnyen fordítható legyen, és a tesztek is könnyedén futtathatóak legyenek. Github Actions-t is be szeretnénk konfigurálni, hogy a tesztek automatikusan lefussanak minden pull request esetén.
 
 Ezenkívül UI testing-et, és exploratory testing-et szeretnénk végezni, hogy a felhasználói felületen és a játékmenetben levő esetleges hibákat felderítsük és kijavítsuk.
+
+### Feladatok dokumentációja:
+
+[Build, CI](/doc/build-ci.md)
+
+[Unit Testing](/doc/unit-testing.md)
+
+[UI Testing](/doc/ui-testing.md)
+
+[Exploratory Testing](/doc/exploratory-testing.md)
