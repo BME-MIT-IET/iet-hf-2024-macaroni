@@ -12,30 +12,30 @@ A modellhez tartozó unit tesztekben az egyes osztályokat elkülönítve, önma
 
 Ezenkívül a Github CI-t is kiegészítettük, hogy a teszteket futtassa le minden pull request létrehozásakor, illetve committoláskor.
 
-### Fő feladat issue: [Unit testing #6](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/6)
+### Fő feladat issue: [Unit testing #6](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/6)
 
 ### Dolgozott rajta:
 - BBalint1997
-  - issue: [Create unit tests for model classes #8](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/8)
-  - PR: [Test system unit models post merge repairs #40](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/40)
+  - issue: [Create unit tests for model classes #8](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/8)
+  - PR: [Test system unit models post merge repairs #40](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/40)
     - reviewer: kereszthury
 - gabor7d2
-  - issue: [Convert old Attach-Detach Actions tests to JUnit #21](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/21)
-  - PR: [Test attach detach actions #22](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/22)
+  - issue: [Convert old Attach-Detach Actions tests to JUnit #21](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/21)
+  - PR: [Test attach detach actions #22](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/22)
     - reviewer: tomecz-tamas
 - homok43
-  - issue: [Convert old Character Move tests to JUnit tests #10](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/10)
-  - PR: [Character Move tests #16](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/16)
+  - issue: [Convert old Character Move tests to JUnit tests #10](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/10)
+  - PR: [Character Move tests #16](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/16)
     - reviewer: kereszthury
 - kereszthury
-  - issue: [Convert old ControllerActions and Element Tick tests to JUnit #11](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/11)
-  - PR: [Controller Actions & Element ticks tests #14](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/14)
+  - issue: [Convert old ControllerActions and Element Tick tests to JUnit #11](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/11)
+  - PR: [Controller Actions & Element ticks tests #14](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/14)
     - reviewer: homok43
 - tomecz-tamas
-  - issue: [Convert old Basic Actions tests to JUnit tests #41](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/41)
-  - PR: [Add basic actions tests #28](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/28)
+  - issue: [Convert old Basic Actions tests to JUnit tests #41](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/41)
+  - PR: [Add basic actions tests #28](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/28)
     - reviewer: homok43
-  - PR: [Setup JUnit, Mockito and JaCoCo coverage #7](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/7)
+  - PR: [Setup JUnit, Mockito and JaCoCo coverage #7](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/7)
     - reviewer: kereszthury
 
 A unit tesztek segítségével megbizonyosodhatunk arról, hogy jól működik a program. Ez nagy segítség lesz, ha a későbbiekben a kódon változtatásokat akarunk eszközölni.

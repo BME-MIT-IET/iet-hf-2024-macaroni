@@ -12,15 +12,15 @@ Asztali környezetben a tesztrendszer az egeret mozgatva és billentyűket lenyo
 rendszerbe sem integrálni.
 Ki is egészítettük a GitHubos CI rendszerünket, hogy ezeket a teszteket is helyesen futtassa.
 
-### Fő feladat issue: [UI Testing #37](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/issues/37)
+### Fő feladat issue: [UI Testing #37](https://github.com/gabor7d2/iet-hf-2024-macaroni/issues/37)
 
 ### Dolgozott rajta:
 
 - homok43
-    - PR: [Menu UI tests #43](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/43)
+    - PR: [Menu UI tests #43](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/43)
         - reviewer: gabor7d2
 - tomecz-tamas
-    - PR: [Swing Tests with CI #39](https://github.com/BME-MIT-IET/iet-hf-2024-macaroni/pull/39)
+    - PR: [Swing Tests with CI #39](https://github.com/gabor7d2/iet-hf-2024-macaroni/pull/39)
         - reviewer: gabor7d2
 
 Megállapítottuk, hogy a UI elemek jól működnek több fajta bevitelre is,
